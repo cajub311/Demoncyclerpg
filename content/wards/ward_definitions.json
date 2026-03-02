@@ -1,0 +1,251 @@
+[
+    {
+          "id": "ward_forbiddance",
+          "name": "Forbiddance Ward",
+          "description": "The most basic ward. Creates an invisible barrier that corelings cannot cross.",
+          "tier": 1,
+          "unlock": { "type": "story", "quest_id": "main_01_first_ward" },
+          "combat": {
+                  "damage": 8,
+                  "damage_type": "forbid",
+                  "mp_cost": 5,
+                  "cast_time": 1.0,
+                  "effect": "barrier",
+                  "effect_duration": 2,
+                  "scaling": { "stat": "WRD", "multiplier": 1.2 }
+          },
+          "exploration": {
+                  "action": "block",
+                  "targets": ["wind_current", "water_flow", "sealed_door"],
+                  "description": "Seals passages and blocks elemental hazards"
+          },
+          "defense": { "durability": 80, "damage_on_contact": 5, "radius": 1, "effect": "repel" },
+          "mastery": {
+                  "F": { "damage_mult": 0.5, "mp_cost_mult": 1.5 },
+                  "D": { "damage_mult": 0.7, "mp_cost_mult": 1.3 },
+                  "C": { "damage_mult": 1.0, "mp_cost_mult": 1.0 },
+                  "B": { "damage_mult": 1.3, "mp_cost_mult": 0.8 },
+                  "A": { "damage_mult": 1.6, "mp_cost_mult": 0.6 },
+                  "S": { "damage_mult": 2.0, "mp_cost_mult": 0.4, "bonus": "barrier reflects damage back at attacker" }
+          },
+          "drawing_template": { "strokes": 2, "complexity": "low", "symbol": "circle_cross" }
+    },
+    {
+          "id": "ward_fire",
+          "name": "Fire Ward",
+          "description": "A ward of flame. Burns any coreling that touches it.",
+          "tier": 1,
+          "unlock": { "type": "quest", "quest_id": "main_01_first_ward", "fallback": "Found inscribed on the old town wardpost" },
+          "combat": {
+                  "damage": 15,
+                  "damage_type": "fire",
+                  "mp_cost": 8,
+                  "cast_time": 1.2,
+                  "effect": "burn",
+                  "effect_duration": 3,
+                  "scaling": { "stat": "WRD", "multiplier": 1.5 }
+          },
+          "exploration": {
+                  "action": "burn",
+                  "targets": ["thorns", "ice_wall", "unlit_torch", "vines"],
+                  "description": "Burns away flammable obstacles and lights dark areas"
+          },
+          "defense": { "durability": 50, "damage_on_contact": 10, "radius": 1, "effect": "ignite_area" },
+          "mastery": {
+                  "F": { "damage_mult": 0.5, "mp_cost_mult": 1.5 },
+                  "D": { "damage_mult": 0.7, "mp_cost_mult": 1.3 },
+                  "C": { "damage_mult": 1.0, "mp_cost_mult": 1.0 },
+                  "B": { "damage_mult": 1.3, "mp_cost_mult": 0.8 },
+                  "A": { "damage_mult": 1.6, "mp_cost_mult": 0.6 },
+                  "S": { "damage_mult": 2.0, "mp_cost_mult": 0.4, "bonus": "fire ward chains to nearby enemies" }
+          },
+          "drawing_template": { "strokes": 3, "complexity": "low", "symbol": "flame_spiral" }
+    },
+    {
+          "id": "ward_impact",
+          "name": "Impact Ward",
+          "description": "A ward of force. Delivers a crushing kinetic blow.",
+          "tier": 2,
+          "unlock": { "type": "zone", "zone": "cutters_hollow", "npc": "ragen" },
+          "combat": {
+                  "damage": 20,
+                  "damage_type": "impact",
+                  "mp_cost": 10,
+                  "cast_time": 1.5,
+                  "effect": "stun",
+                  "effect_duration": 1,
+                  "scaling": { "stat": "WRD", "multiplier": 1.6 }
+          },
+          "exploration": {
+                  "action": "smash",
+                  "targets": ["boulder", "cracked_wall", "pressure_plate", "locked_chest"],
+                  "description": "Breaks boulders and triggers pressure plates"
+          },
+          "defense": { "durability": 60, "damage_on_contact": 18, "radius": 1, "effect": "knockback" },
+          "mastery": {
+                  "F": { "damage_mult": 0.5, "mp_cost_mult": 1.5 },
+                  "D": { "damage_mult": 0.7, "mp_cost_mult": 1.3 },
+                  "C": { "damage_mult": 1.0, "mp_cost_mult": 1.0 },
+                  "B": { "damage_mult": 1.3, "mp_cost_mult": 0.8 },
+                  "A": { "damage_mult": 1.6, "mp_cost_mult": 0.6 },
+                  "S": { "damage_mult": 2.0, "mp_cost_mult": 0.4, "bonus": "stun lasts 2 turns, destroys rock demons armor" }
+          },
+          "drawing_template": { "strokes": 4, "complexity": "medium", "symbol": "downward_arrow" }
+    },
+    {
+          "id": "ward_cold",
+          "name": "Cold Ward",
+          "description": "A ward of ice. Freezes corelings in place.",
+          "tier": 2,
+          "unlock": { "type": "purchase", "town": "cutters_hollow", "shop": "general_store", "cost": 300 },
+          "combat": {
+                  "damage": 12,
+                  "damage_type": "cold",
+                  "mp_cost": 9,
+                  "cast_time": 1.3,
+                  "effect": "freeze",
+                  "effect_duration": 2,
+                  "scaling": { "stat": "WRD", "multiplier": 1.4 }
+          },
+          "exploration": {
+                  "action": "freeze",
+                  "targets": ["water_tile", "lava_flow", "flame_barrier"],
+                  "description": "Freezes water to walk across, extinguishes flames"
+          },
+          "defense": { "durability": 55, "damage_on_contact": 8, "radius": 2, "effect": "slow_field" },
+          "mastery": {
+                  "F": { "damage_mult": 0.5, "mp_cost_mult": 1.5 },
+                  "D": { "damage_mult": 0.7, "mp_cost_mult": 1.3 },
+                  "C": { "damage_mult": 1.0, "mp_cost_mult": 1.0 },
+                  "B": { "damage_mult": 1.3, "mp_cost_mult": 0.8 },
+                  "A": { "damage_mult": 1.6, "mp_cost_mult": 0.6 },
+                  "S": { "damage_mult": 2.0, "mp_cost_mult": 0.4, "bonus": "frozen enemies shatter for bonus damage on next hit" }
+          },
+          "drawing_template": { "strokes": 5, "complexity": "medium", "symbol": "snowflake" }
+    },
+    {
+          "id": "ward_sight",
+          "name": "Sight Ward",
+          "description": "Opens the mind's eye. Reveals hidden enemies and paths.",
+          "tier": 3,
+          "unlock": { "type": "quest", "quest_id": "angiers_hidden_library" },
+          "combat": {
+                  "damage": 5,
+                  "damage_type": "light",
+                  "mp_cost": 6,
+                  "cast_time": 0.8,
+                  "effect": "reveal",
+                  "effect_duration": 5,
+                  "scaling": { "stat": "INT", "multiplier": 1.1 }
+          },
+          "exploration": {
+                  "action": "reveal",
+                  "targets": ["hidden_path", "invisible_door", "ancient_text", "mimic_demon"],
+                  "description": "Reveals invisible paths and lets you read ancient ward texts"
+          },
+          "defense": { "durability": 40, "damage_on_contact": 3, "radius": 3, "effect": "expose_hidden" },
+          "mastery": {
+                  "F": { "damage_mult": 0.5, "mp_cost_mult": 1.5 },
+                  "D": { "damage_mult": 0.7, "mp_cost_mult": 1.3 },
+                  "C": { "damage_mult": 1.0, "mp_cost_mult": 1.0 },
+                  "B": { "damage_mult": 1.3, "mp_cost_mult": 0.8 },
+                  "A": { "damage_mult": 1.6, "mp_cost_mult": 0.6 },
+                  "S": { "damage_mult": 2.0, "mp_cost_mult": 0.4, "bonus": "permanently reveals all hidden objects in a zone" }
+          },
+          "drawing_template": { "strokes": 6, "complexity": "high", "symbol": "open_eye" }
+    },
+    {
+          "id": "ward_sound",
+          "name": "Sound Ward",
+          "description": "A ward that manipulates sound waves. Confuses and charms demons.",
+          "tier": 3,
+          "unlock": { "type": "companion", "companion": "rojer", "loyalty_required": 50 },
+          "combat": {
+                  "damage": 10,
+                  "damage_type": "sound",
+                  "mp_cost": 12,
+                  "cast_time": 1.8,
+                  "effect": "confuse",
+                  "effect_duration": 3,
+                  "scaling": { "stat": "CHR", "multiplier": 1.3 }
+          },
+          "exploration": {
+                  "action": "lure",
+                  "targets": ["sound_puzzle", "guard_demon", "locked_gate"],
+                  "description": "Lures enemies away and activates sound-triggered puzzles"
+          },
+          "defense": { "durability": 45, "damage_on_contact": 6, "radius": 2, "effect": "confusion_field" },
+          "mastery": {
+                  "F": { "damage_mult": 0.5, "mp_cost_mult": 1.5 },
+                  "D": { "damage_mult": 0.7, "mp_cost_mult": 1.3 },
+                  "C": { "damage_mult": 1.0, "mp_cost_mult": 1.0 },
+                  "B": { "damage_mult": 1.3, "mp_cost_mult": 0.8 },
+                  "A": { "damage_mult": 1.6, "mp_cost_mult": 0.6 },
+                  "S": { "damage_mult": 2.0, "mp_cost_mult": 0.4, "bonus": "charmed demons fight for your party for 1 turn" }
+          },
+          "drawing_template": { "strokes": 4, "complexity": "medium", "symbol": "sound_wave" }
+    },
+    {
+          "id": "ward_succor",
+          "name": "Succor Ward",
+          "description": "A ward of healing. Restores HP and cures status effects.",
+          "tier": 4,
+          "unlock": { "type": "quest", "quest_id": "companion_leesha_02" },
+          "combat": {
+                  "damage": 0,
+                  "damage_type": "healing",
+                  "mp_cost": 15,
+                  "cast_time": 2.0,
+                  "effect": "heal",
+                  "heal_amount": 30,
+                  "effect_duration": 0,
+                  "scaling": { "stat": "WRD", "multiplier": 1.8 }
+          },
+          "exploration": {
+                  "action": "purify",
+                  "targets": ["corrupted_ward", "poison_pool", "broken_ward_post"],
+                  "description": "Purifies corrupted areas and restores broken ward structures"
+          },
+          "defense": { "durability": 70, "damage_on_contact": 0, "radius": 1, "effect": "heal_party_on_contact" },
+          "mastery": {
+                  "F": { "damage_mult": 0.5, "mp_cost_mult": 1.5 },
+                  "D": { "damage_mult": 0.7, "mp_cost_mult": 1.3 },
+                  "C": { "damage_mult": 1.0, "mp_cost_mult": 1.0 },
+                  "B": { "damage_mult": 1.3, "mp_cost_mult": 0.8 },
+                  "A": { "damage_mult": 1.6, "mp_cost_mult": 0.6 },
+                  "S": { "damage_mult": 2.0, "mp_cost_mult": 0.4, "bonus": "fully restores one party member and removes all debuffs" }
+          },
+          "drawing_template": { "strokes": 5, "complexity": "high", "symbol": "cross_circle" }
+    },
+    {
+          "id": "ward_combat",
+          "name": "Combat Ward",
+          "description": "The tattoo wards of the Painted Man. Channels power through flesh.",
+          "tier": 4,
+          "unlock": { "type": "story", "quest_id": "main_04_painted_man_path" },
+          "combat": {
+                  "damage": 35,
+                  "damage_type": "combat",
+                  "mp_cost": 18,
+                  "cast_time": 0.5,
+                  "effect": "power_strike",
+                  "effect_duration": 0,
+                  "scaling": { "stat": "STR", "multiplier": 2.0 }
+          },
+          "exploration": {
+                  "action": "climb",
+                  "targets": ["ward_locked_door", "cliff_face", "demon_barrier"],
+                  "description": "Allows climbing sheer surfaces and breaking ward-locked passages"
+          },
+          "defense": { "durability": 100, "damage_on_contact": 25, "radius": 0, "effect": "melee_boost" },
+          "mastery": {
+                  "F": { "damage_mult": 0.5, "mp_cost_mult": 1.5 },
+                  "D": { "damage_mult": 0.7, "mp_cost_mult": 1.3 },
+                  "C": { "damage_mult": 1.0, "mp_cost_mult": 1.0 },
+                  "B": { "damage_mult": 1.3, "mp_cost_mult": 0.8 },
+                  "A": { "damage_mult": 1.6, "mp_cost_mult": 0.6 },
+                  "S": { "damage_mult": 2.0, "mp_cost_mult": 0.4, "bonus": "Hora Strike — one-hit massive damage, costs all remaining MP" }
+          },
+          "drawing_template": { "strokes": 8, "complexity": "very_high", "symbol": "rune_lattice" }
+    }
+]
