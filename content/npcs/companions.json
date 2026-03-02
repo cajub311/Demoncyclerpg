@@ -1,0 +1,272 @@
+[
+    {
+          "id": "arlen",
+          "name": "Arlen Bales",
+          "title": "The Painted Man",
+          "role": "Melee DPS / Ward Fighter",
+          "description": "A young man from Tibbet's Brook who tattooed combat wards onto his flesh. The most dangerous human alive.",
+          "recruitment": { "type": "story_start", "zone": "tibbets_brook" },
+          "base_stats": {
+                  "STR": 14, "SPD": 12, "WRD": 16, "INT": 10, "FOR": 13, "CHR": 7,
+                  "hp_base": 60, "mp_base": 40
+          },
+          "stat_growth": {
+                  "STR": 1.4, "SPD": 1.1, "WRD": 1.5, "INT": 0.9, "FOR": 1.2, "CHR": 0.7
+          },
+          "signature_ability": {
+                  "id": "combat_ward_burst",
+                  "name": "Painted Man's Fury",
+                  "description": "Combat wards flare across Arlen's skin. Massive melee combo that hits all enemies.",
+                  "damage_multiplier": 3.0,
+                  "damage_type": "combat",
+                  "mp_cost": 25,
+                  "unlock_loyalty": 0,
+                  "ward_charge_cost": 100
+          },
+          "passive_ability": {
+                  "id": "ward_skin",
+                  "name": "Ward Skin",
+                  "description": "Arlen's tattoos glow during night. +20% all damage at night.",
+                  "effect": "night_damage_boost",
+                  "value": 0.2
+          },
+          "skills": [
+                  { "id": "spear_strike", "name": "Spear Strike", "damage_mult": 1.5, "mp_cost": 4, "unlock_level": 1 },
+                  { "id": "ward_punch", "name": "Ward Punch", "damage_mult": 2.0, "mp_cost": 8, "unlock_level": 5, "damage_type": "combat" },
+                  { "id": "hora_blade", "name": "Hora Blade", "damage_mult": 2.8, "mp_cost": 15, "unlock_level": 12, "requires_item": "hora_weapon" }
+          ],
+          "loyalty_dialogue": {
+                  "10": "Don't slow me down.",
+                  "30": "You're tougher than I expected.",
+                  "50": "I've been watching you fight. You've got something.",
+                  "75": "You remind me why I do this.",
+                  "100": "I've been alone a long time. Not anymore."
+          },
+          "personal_quest": { "id": "arlen_01_the_tattoo_decision", "unlock_loyalty": 40 },
+          "sprite": "assets/characters/arlen_32x32.png",
+          "portrait": "assets/portraits/arlen_portrait.png"
+    },
+    {
+          "id": "leesha",
+          "name": "Leesha Paper",
+          "title": "Herb Gatherer",
+          "role": "Healer / Alchemist",
+          "description": "The daughter of Tibbet's Brook's herb gatherer. Brilliant, stubborn, and the best healer you'll ever meet.",
+          "recruitment": {
+                  "type": "quest_chain",
+                  "zone": "tibbets_brook",
+                  "quest_id": "companion_leesha_01",
+                  "description": "Help Leesha gather rare nightbloom herbs before dusk"
+          },
+          "base_stats": {
+                  "STR": 6, "SPD": 10, "WRD": 12, "INT": 18, "FOR": 10, "CHR": 14,
+                  "hp_base": 38, "mp_base": 55
+          },
+          "stat_growth": {
+                  "STR": 0.6, "SPD": 1.0, "WRD": 1.2, "INT": 1.8, "FOR": 0.9, "CHR": 1.3
+          },
+          "signature_ability": {
+                  "id": "apothecary_miracle",
+                  "name": "Apothecary's Miracle",
+                  "description": "Leesha mixes a legendary compound. Fully heals all party members and removes all status effects.",
+                  "heal_amount": "full",
+                  "targets": "all_party",
+                  "mp_cost": 30,
+                  "unlock_loyalty": 60,
+                  "ward_charge_cost": 80
+          },
+          "passive_ability": {
+                  "id": "herb_lore",
+                  "name": "Herb Lore",
+                  "description": "Leesha identifies all herbs automatically. Healing items are 50% more effective.",
+                  "effect": "healing_boost",
+                  "value": 0.5
+          },
+          "skills": [
+                  { "id": "salve", "name": "Healing Salve", "heal_amount": 20, "mp_cost": 6, "unlock_level": 1 },
+                  { "id": "antidote", "name": "Antidote", "effect": "cure_poison_and_disease", "mp_cost": 5, "unlock_level": 3 },
+                  { "id": "herb_bomb", "name": "Herb Bomb", "damage": 18, "damage_type": "fire", "mp_cost": 10, "unlock_level": 8 },
+                  { "id": "ward_salve", "name": "Ward Salve", "effect": "restore_ward_durability", "value": 30, "mp_cost": 12, "unlock_level": 14 }
+          ],
+          "loyalty_dialogue": {
+                  "10": "I can handle myself, thank you.",
+                  "30": "You're not as reckless as I thought.",
+                  "50": "I'm glad you came for me that night.",
+                  "75": "You're the only one who listens to me.",
+                  "100": "I've made my choice. I choose this road, with you."
+          },
+          "personal_quest": { "id": "leesha_01_the_apprenticeship", "unlock_loyalty": 30 },
+          "moral_conflict": "She disapproves of hora weapons and demon-eating moral choices. Loyalty -10 each time.",
+          "sprite": "assets/characters/leesha_32x32.png",
+          "portrait": "assets/portraits/leesha_portrait.png"
+    },
+    {
+          "id": "rojer",
+          "name": "Rojer Inn",
+          "title": "Jongleur",
+          "role": "Bard / Support",
+          "description": "A traveling performer who discovered his fiddle music has power over demons. Cheerful on the surface, haunted underneath.",
+          "recruitment": {
+                  "type": "quest_chain",
+                  "zone": "cutters_hollow",
+                  "quest_id": "companion_rojer_01",
+                  "description": "Help Rojer perform at the Cutter's Hollow inn and survive a night coreling attack together"
+          },
+          "base_stats": {
+                  "STR": 8, "SPD": 16, "WRD": 10, "INT": 13, "FOR": 9, "CHR": 20,
+                  "hp_base": 30, "mp_base": 50
+          },
+          "stat_growth": {
+                  "STR": 0.7, "SPD": 1.4, "WRD": 1.0, "INT": 1.1, "FOR": 0.8, "CHR": 2.0
+          },
+          "signature_ability": {
+                  "id": "warded_chorus",
+                  "name": "Warded Chorus",
+                  "description": "Rojer plays a song woven through with ward-symbols. Party gains +30% all stats for 3 turns. All enemies confused.",
+                  "effect": "party_buff_all_stats",
+                  "buff_value": 0.3,
+                  "buff_duration": 3,
+                  "enemy_effect": "confuse",
+                  "mp_cost": 28,
+                  "unlock_loyalty": 50,
+                  "ward_charge_cost": 80
+          },
+          "passive_ability": {
+                  "id": "fiddle_charm",
+                  "name": "Fiddle Charm",
+                  "description": "At the start of each night defense, Rojer plays a tune that delays the first wave by 15 seconds.",
+                  "effect": "delay_first_wave",
+                  "value": 15
+          },
+          "skills": [
+                  { "id": "lullaby", "name": "Demon Lullaby", "effect": "sleep_one_enemy", "mp_cost": 10, "unlock_level": 1 },
+                  { "id": "battle_hymn", "name": "Battle Hymn", "effect": "party_attack_boost", "value": 0.25, "duration": 3, "mp_cost": 12, "unlock_level": 5 },
+                  { "id": "dirge", "name": "Dirge of Despair", "effect": "enemy_defense_down", "value": 0.3, "duration": 2, "mp_cost": 8, "unlock_level": 9 },
+                  { "id": "symphony", "name": "Ward Symphony", "effect": "all_ward_damage_up", "value": 0.4, "duration": 4, "mp_cost": 20, "unlock_level": 16 }
+          ],
+          "loyalty_dialogue": {
+                  "10": "As long as there's coin in it... I'm kidding. Mostly.",
+                  "30": "You know, you're not bad company for someone who never smiles.",
+                  "50": "I've been running my whole life. Maybe it's time to stop.",
+                  "75": "I play for them. The ones who didn't make it.",
+                  "100": "This is the best audience I've ever had. The worst demons, the best audience."
+          },
+          "personal_quest": { "id": "rojer_01_the_fiddle_and_the_flame", "unlock_loyalty": 35 },
+          "relationship": { "with": "leesha", "tension": true, "description": "Rojer and Leesha have unresolved feelings. Choice events affect both their loyalties." },
+          "sprite": "assets/characters/rojer_32x32.png",
+          "portrait": "assets/portraits/rojer_portrait.png"
+    },
+    {
+          "id": "renna",
+          "name": "Renna Tanner",
+          "title": "Hunter",
+          "role": "Berserker / Tank",
+          "description": "A farm girl turned fierce warrior. She's tasted hora and discovered the power it gives. The cost, she tries not to think about.",
+          "recruitment": {
+                  "type": "quest_chain",
+                  "zone": "angiers",
+                  "quest_id": "companion_renna_01",
+                  "description": "Save Renna from a coreling ambush on the Messenger Road"
+          },
+          "base_stats": {
+                  "STR": 18, "SPD": 14, "WRD": 8, "INT": 8, "FOR": 16, "CHR": 9,
+                  "hp_base": 75, "mp_base": 25
+          },
+          "stat_growth": {
+                  "STR": 2.0, "SPD": 1.3, "WRD": 0.7, "INT": 0.7, "FOR": 1.8, "CHR": 0.8
+          },
+          "signature_ability": {
+                  "id": "hora_rage",
+                  "name": "Hora Rage",
+                  "description": "Renna consumes hora, entering a berserk state. Damage x4 for 2 turns, but takes 10% HP per turn.",
+                  "effect": "berserk_hora",
+                  "damage_multiplier": 4.0,
+                  "duration": 2,
+                  "hp_cost_per_turn": 0.1,
+                  "mp_cost": 20,
+                  "unlock_loyalty": 70,
+                  "ward_charge_cost": 100
+          },
+          "passive_ability": {
+                  "id": "low_hp_rage",
+                  "name": "Desperate Fury",
+                  "description": "When HP drops below 25%, attack power +50%.",
+                  "effect": "low_hp_attack_boost",
+                  "trigger": "hp_below_25pct",
+                  "value": 0.5
+          },
+          "skills": [
+                  { "id": "heavy_blow", "name": "Heavy Blow", "damage_mult": 1.8, "mp_cost": 5, "unlock_level": 1 },
+                  { "id": "taunt", "name": "Taunt", "effect": "enemy_focus_renna", "duration": 2, "mp_cost": 4, "unlock_level": 4 },
+                  { "id": "hora_strike", "name": "Hora Strike", "damage_mult": 2.5, "damage_type": "hora", "mp_cost": 12, "unlock_level": 10, "requires_item": "hora_any" },
+                  { "id": "shield_bash", "name": "Shield Bash", "damage_mult": 1.2, "effect": "stun_1_turn", "mp_cost": 7, "unlock_level": 7 }
+          ],
+          "loyalty_dialogue": {
+                  "10": "I don't need your help.",
+                  "30": "You fight different from anyone I've met.",
+                  "50": "The hora... I know what you think. I don't care.",
+                  "75": "You never judged me. That means something.",
+                  "100": "I'd follow you into the Core itself."
+          },
+          "personal_quest": { "id": "renna_01_the_hora_question", "unlock_loyalty": 45 },
+          "moral_conflict": "The hora weapon moral choice increases Renna's loyalty by 15. Refusing hora decreases it by 5.",
+          "sprite": "assets/characters/renna_32x32.png",
+          "portrait": "assets/portraits/renna_portrait.png"
+    },
+    {
+          "id": "jardir",
+          "name": "Ahmann Jardir",
+          "title": "Shar'Dama Ka",
+          "role": "Warrior / Rival",
+          "description": "A Krasian warrior who believes he is the chosen of Everam, destined to lead humanity against demonkind. Brilliant, ruthless, and genuinely devoted.",
+          "recruitment": {
+                  "type": "moral_choice",
+                  "zone": "desert_spear",
+                  "quest_id": "main_05_krasian_alliance",
+                  "condition": "chose_krasian_alliance",
+                  "description": "Only available if you chose to ally with the Krasians in Act 5"
+          },
+          "base_stats": {
+                  "STR": 20, "SPD": 15, "WRD": 14, "INT": 15, "FOR": 18, "CHR": 16,
+                  "hp_base": 85, "mp_base": 45
+          },
+          "stat_growth": {
+                  "STR": 1.8, "SPD": 1.2, "WRD": 1.3, "INT": 1.2, "FOR": 1.6, "CHR": 1.4
+          },
+          "signature_ability": {
+                  "id": "spear_of_everam",
+                  "name": "Spear of Everam",
+                  "description": "Jardir channels the power of the warded spear. Devastating single-target hit that ignores all defenses.",
+                  "damage_multiplier": 5.0,
+                  "damage_type": "hora",
+                  "ignores_defense": true,
+                  "mp_cost": 35,
+                  "unlock_loyalty": 60,
+                  "ward_charge_cost": 100
+          },
+          "passive_ability": {
+                  "id": "leaders_aura",
+                  "name": "Leader's Aura",
+                  "description": "Jardir's presence inspires the party. All party members gain +10% attack.",
+                  "effect": "party_attack_aura",
+                  "value": 0.1
+          },
+          "skills": [
+                  { "id": "sharum_strike", "name": "Sharum Strike", "damage_mult": 2.0, "mp_cost": 8, "unlock_level": 1 },
+                  { "id": "dal_sharum_form", "name": "Dal'Sharum Form", "effect": "attack_and_defense_boost", "value": 0.2, "duration": 3, "mp_cost": 10, "unlock_level": 6 },
+                  { "id": "krasian_discipline", "name": "Krasian Discipline", "effect": "remove_status_effects_self", "mp_cost": 5, "unlock_level": 4 }
+          ],
+          "loyalty_dialogue": {
+                  "10": "You fight with honor. I will acknowledge this.",
+                  "30": "Few chin warriors earn my respect. You may be one.",
+                  "50": "Everam tests us both. Walk this path with me.",
+                  "75": "Perhaps I have been too rigid in my judgments.",
+                  "100": "Shar'Dama Ka or not — you are my brother."
+          },
+          "personal_quest": { "id": "jardir_01_the_honor_duel", "unlock_loyalty": 50 },
+          "relationship": { "with": "arlen", "tension": true, "description": "Jardir and Arlen have deep rivalry. Their combined loyalty affects a special ending." },
+          "exclusive_path": "krasian_alliance",
+          "sprite": "assets/characters/jardir_32x32.png",
+          "portrait": "assets/portraits/jardir_portrait.png"
+    }
+]
