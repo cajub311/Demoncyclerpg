@@ -1,0 +1,271 @@
+[
+    {
+          "id": "coreling_flame",
+          "name": "Flame Demon",
+          "description": "Small, quick corelings that spit fire. Dangerous in groups.",
+          "zone_min": 1,
+          "stats": { "hp": 25, "attack": 12, "defense": 5, "speed": 18, "xp_reward": 15, "mp_reward": 5 },
+          "behavior": "aggressive_ranged",
+          "abilities": [
+                  { "name": "Fire Spit", "damage": 8, "type": "fire", "range": 3 },
+                  { "name": "Self-Ignite", "trigger": "hp_below_25pct", "effect": "explode", "damage": 20, "radius": 1 }
+          ],
+          "weaknesses": ["cold", "impact"],
+          "resistances": ["fire"],
+          "loot_table": [
+                  { "item": "flame_hora", "chance": 0.3 },
+                  { "item": "ichor", "chance": 0.6 },
+                  { "item": "gold", "amount": [5, 15], "chance": 1.0 }
+          ],
+          "sprite": "assets/corelings/flame_demon.png",
+          "night_spawn_weight": 20,
+          "atb_speed": 1.4
+    },
+    {
+          "id": "coreling_wood",
+          "name": "Wood Demon",
+          "description": "Large and slow but climbs over wards. Tears through wooden structures.",
+          "zone_min": 1,
+          "stats": { "hp": 40, "attack": 15, "defense": 10, "speed": 10, "xp_reward": 20, "mp_reward": 3 },
+          "behavior": "aggressive_melee",
+          "abilities": [
+                  { "name": "Claw Swipe", "damage": 12, "type": "slash", "range": 1 },
+                  { "name": "Ward Climb", "trigger": "on_ward_contact", "effect": "bypass_ward", "description": "Climbs over forbiddance wards" }
+          ],
+          "weaknesses": ["fire"],
+          "resistances": ["impact", "slash"],
+          "loot_table": [
+                  { "item": "wood_hora", "chance": 0.25 },
+                  { "item": "ichor", "chance": 0.5 },
+                  { "item": "gold", "amount": [3, 10], "chance": 1.0 }
+          ],
+          "sprite": "assets/corelings/wood_demon.png",
+          "night_spawn_weight": 25,
+          "atb_speed": 0.9
+    },
+    {
+          "id": "coreling_rock",
+          "name": "Rock Demon",
+          "description": "Massive, armored coreling. Charges in straight lines, devastating walls.",
+          "zone_min": 2,
+          "stats": { "hp": 80, "attack": 25, "defense": 20, "speed": 5, "xp_reward": 45, "mp_reward": 8 },
+          "behavior": "charge_melee",
+          "abilities": [
+                  { "name": "Stone Charge", "damage": 25, "type": "impact", "range": 4, "effect": "stun" },
+                  { "name": "Rock Armor", "trigger": "on_battle_start", "effect": "armor_buff", "value": 10 }
+          ],
+          "weaknesses": ["impact"],
+          "resistances": ["fire", "cold", "slash"],
+          "loot_table": [
+                  { "item": "rock_hora", "chance": 0.4 },
+                  { "item": "stone", "chance": 0.7 },
+                  { "item": "gold", "amount": [15, 30], "chance": 1.0 }
+          ],
+          "sprite": "assets/corelings/rock_demon.png",
+          "night_spawn_weight": 10,
+          "atb_speed": 0.6
+    },
+    {
+          "id": "coreling_wind",
+          "name": "Wind Demon",
+          "description": "Flies above the ground. Immune to all ground-placed wards.",
+          "zone_min": 2,
+          "stats": { "hp": 20, "attack": 10, "defense": 3, "speed": 32, "xp_reward": 30, "mp_reward": 10 },
+          "behavior": "evasive_ranged",
+          "abilities": [
+                  { "name": "Gust Slash", "damage": 10, "type": "wind", "range": 2 },
+                  { "name": "Airborne", "trigger": "passive", "effect": "immune_ground_wards", "description": "Cannot be stopped by ground-level wards" }
+          ],
+          "weaknesses": ["sound", "cold"],
+          "resistances": ["fire", "impact"],
+          "loot_table": [
+                  { "item": "wind_hora", "chance": 0.3 },
+                  { "item": "ichor", "chance": 0.55 },
+                  { "item": "gold", "amount": [10, 20], "chance": 1.0 }
+          ],
+          "sprite": "assets/corelings/wind_demon.png",
+          "night_spawn_weight": 15,
+          "atb_speed": 2.2
+    },
+    {
+          "id": "coreling_sand",
+          "name": "Sand Demon",
+          "description": "Burrows underground to ambush. Sight ward reveals its position.",
+          "zone_min": 3,
+          "stats": { "hp": 35, "attack": 18, "defense": 8, "speed": 15, "xp_reward": 40, "mp_reward": 12 },
+          "behavior": "ambush_melee",
+          "abilities": [
+                  { "name": "Burrow", "trigger": "on_spawn", "effect": "invisible_underground", "description": "Invisible until sight ward or adjacent" },
+                  { "name": "Sand Eruption", "damage": 22, "type": "impact", "range": 1, "effect": "disorient" }
+          ],
+          "weaknesses": ["sight", "cold"],
+          "resistances": ["fire"],
+          "loot_table": [
+                  { "item": "sand_hora", "chance": 0.3 },
+                  { "item": "ichor", "chance": 0.5 },
+                  { "item": "gold", "amount": [12, 25], "chance": 1.0 }
+          ],
+          "sprite": "assets/corelings/sand_demon.png",
+          "night_spawn_weight": 12,
+          "atb_speed": 1.2
+    },
+    {
+          "id": "coreling_swamp",
+          "name": "Swamp Demon",
+          "description": "Dripping with corrosive ichor. Its touch poisons the unwary.",
+          "zone_min": 3,
+          "stats": { "hp": 45, "attack": 14, "defense": 12, "speed": 10, "xp_reward": 38, "mp_reward": 15 },
+          "behavior": "aggressive_melee",
+          "abilities": [
+                  { "name": "Poison Spit", "damage": 6, "type": "poison", "range": 2, "effect": "poison", "effect_duration": 5 },
+                  { "name": "Ichor Splash", "trigger": "on_death", "effect": "poison_aoe", "damage": 5, "radius": 1 }
+          ],
+          "weaknesses": ["fire"],
+          "resistances": ["cold", "poison"],
+          "loot_table": [
+                  { "item": "swamp_hora", "chance": 0.3 },
+                  { "item": "ichor", "chance": 0.8 },
+                  { "item": "warding_ink", "chance": 0.2 },
+                  { "item": "gold", "amount": [8, 18], "chance": 1.0 }
+          ],
+          "sprite": "assets/corelings/swamp_demon.png",
+          "night_spawn_weight": 12,
+          "atb_speed": 0.95
+    },
+    {
+          "id": "coreling_snow",
+          "name": "Snow Demon",
+          "description": "Born of frozen mountaintops. Breath freezes enemies solid.",
+          "zone_min": 4,
+          "stats": { "hp": 50, "attack": 16, "defense": 15, "speed": 13, "xp_reward": 55, "mp_reward": 18 },
+          "behavior": "aggressive_mixed",
+          "abilities": [
+                  { "name": "Freeze Breath", "damage": 14, "type": "cold", "range": 2, "effect": "freeze", "effect_duration": 2 },
+                  { "name": "Ice Armor", "trigger": "passive", "effect": "cold_resistance", "value": 0.5 }
+          ],
+          "weaknesses": ["fire"],
+          "resistances": ["cold"],
+          "loot_table": [
+                  { "item": "snow_hora", "chance": 0.35 },
+                  { "item": "ichor", "chance": 0.5 },
+                  { "item": "gold", "amount": [18, 35], "chance": 1.0 }
+          ],
+          "sprite": "assets/corelings/snow_demon.png",
+          "night_spawn_weight": 8,
+          "atb_speed": 1.1
+    },
+    {
+          "id": "coreling_mimic",
+          "name": "Mimic Demon",
+          "description": "Copies the last ability used against it. Dangerous and unpredictable.",
+          "zone_min": 4,
+          "stats": { "hp": 60, "attack": 20, "defense": 18, "speed": 16, "xp_reward": 80, "mp_reward": 20 },
+          "behavior": "adaptive",
+          "abilities": [
+                  { "name": "Copy", "trigger": "after_being_hit_by_ability", "effect": "mimic_last_ability", "description": "Copies the ward or skill used against it" },
+                  { "name": "Disguise", "trigger": "on_spawn_chance_50pct", "effect": "disguise_as_chest", "description": "Appears as a treasure chest until interacted with" }
+          ],
+          "weaknesses": ["mind", "sight"],
+          "resistances": ["varies"],
+          "loot_table": [
+                  { "item": "mimic_hora", "chance": 0.5 },
+                  { "item": "rare_material", "chance": 0.3 },
+                  { "item": "gold", "amount": [30, 60], "chance": 1.0 }
+          ],
+          "sprite": "assets/corelings/mimic_demon.png",
+          "night_spawn_weight": 5,
+          "atb_speed": 1.5
+    },
+    {
+          "id": "coreling_mind",
+          "name": "Mind Demon",
+          "description": "The most intelligent coreling. Commands others and uses magic.",
+          "zone_min": 5,
+          "stats": { "hp": 100, "attack": 30, "defense": 25, "speed": 20, "xp_reward": 150, "mp_reward": 30 },
+          "behavior": "tactical_commander",
+          "abilities": [
+                  { "name": "Mind Blast", "damage": 22, "type": "psychic", "range": 4, "effect": "confuse" },
+                  { "name": "Command", "trigger": "each_turn", "effect": "buff_nearby_corelings", "value": 1.3 },
+                  { "name": "Barrier", "trigger": "hp_below_50pct", "effect": "magic_shield", "hp_shield": 30 }
+          ],
+          "weaknesses": ["combat", "sound"],
+          "resistances": ["fire", "cold", "impact"],
+          "loot_table": [
+                  { "item": "mind_hora", "chance": 0.6 },
+                  { "item": "rare_ward_fragment", "chance": 0.25 },
+                  { "item": "gold", "amount": [50, 100], "chance": 1.0 }
+          ],
+          "sprite": "assets/corelings/mind_demon.png",
+          "night_spawn_weight": 2,
+          "atb_speed": 1.8
+    },
+    {
+          "id": "coreling_consort",
+          "name": "Consort",
+          "description": "A powerful servant of the mind demon. Heals its master and shields it.",
+          "zone_min": 5,
+          "stats": { "hp": 150, "attack": 10, "defense": 30, "speed": 8, "xp_reward": 100, "mp_reward": 25 },
+          "behavior": "support_defender",
+          "abilities": [
+                  { "name": "Heal Master", "trigger": "every_2_turns", "effect": "heal_mind_demon", "value": 20 },
+                  { "name": "Shield Wall", "trigger": "passive", "effect": "redirect_damage_to_consort", "chance": 0.4 }
+          ],
+          "weaknesses": ["mind"],
+          "resistances": ["fire", "cold", "impact", "sound"],
+          "loot_table": [
+                  { "item": "consort_hora", "chance": 0.4 },
+                  { "item": "heavy_armor_fragment", "chance": 0.2 },
+                  { "item": "gold", "amount": [40, 80], "chance": 1.0 }
+          ],
+          "sprite": "assets/corelings/consort.png",
+          "night_spawn_weight": 1,
+          "atb_speed": 0.7
+    },
+    {
+          "id": "boss_demon_prince",
+          "name": "Demon Prince",
+          "description": "The apex predator of the night. Multi-phase boss with unrelenting power.",
+          "zone_min": 5,
+          "is_boss": true,
+          "stats": { "hp": 500, "attack": 40, "defense": 35, "speed": 15, "xp_reward": 1000, "mp_reward": 50 },
+          "behavior": "boss_multiphase",
+          "phases": [
+                  {
+                            "phase": 1,
+                            "hp_threshold": 1.0,
+                            "abilities": [
+                                        { "name": "Demon Slash", "damage": 30, "type": "slash", "range": 1 },
+                                        { "name": "Coreling Call", "trigger": "every_3_turns", "effect": "spawn_2_flame_demons" }
+                            ]
+                  },
+                  {
+                            "phase": 2,
+                            "hp_threshold": 0.5,
+                            "abilities": [
+                                        { "name": "Hora Cannon", "damage": 50, "type": "hora", "range": 5 },
+                                        { "name": "Ward Shatter", "effect": "destroy_random_defense_ward" },
+                                        { "name": "Rage", "trigger": "on_phase_start", "effect": "attack_buff", "value": 1.5 }
+                            ]
+                  },
+                  {
+                            "phase": 3,
+                            "hp_threshold": 0.25,
+                            "abilities": [
+                                        { "name": "Apocalypse Strike", "damage": 80, "type": "all", "range": 3 },
+                                        { "name": "Demon Surge", "effect": "restore_50hp_per_turn" },
+                                        { "name": "True Form", "trigger": "on_phase_start", "effect": "immune_one_damage_type_random" }
+                            ]
+                  }
+          ],
+          "weaknesses": [],
+          "resistances": ["fire", "cold", "impact", "sound", "wind"],
+          "loot_table": [
+                  { "item": "prince_hora", "chance": 1.0 },
+                  { "item": "demon_crown", "chance": 1.0 },
+                  { "item": "gold", "amount": [500, 1000], "chance": 1.0 }
+          ],
+          "sprite": "assets/corelings/demon_prince.png",
+          "night_spawn_weight": 0,
+          "atb_speed": 1.3
+    }
+]
