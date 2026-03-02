@@ -120,6 +120,16 @@ export function corelingsSpawn(phase) {
 }
 
 /**
+ * Sunset danger progress 0-1: how close to night (for HUD bar)
+ * 0 = safe (day start), 1 = dusk or night
+ */
+export function getSunsetDangerProgress(minute) {
+  if (minute >= PHASE_BOUNDARIES.DUSK_START) return 1;
+  if (minute < PHASE_BOUNDARIES.DAY_START) return 0;
+  return (minute - PHASE_BOUNDARIES.DAY_START) / (PHASE_BOUNDARIES.DUSK_START - PHASE_BOUNDARIES.DAY_START);
+}
+
+/**
  * Format minute as HH:MM
  */
 export function formatTime(minute) {

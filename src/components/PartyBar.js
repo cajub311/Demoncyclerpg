@@ -1,6 +1,6 @@
 /**
- * PartyBar.js - Party member switching (Arlen, Leesha, Rojer)
- * Minimum 44px tap targets for mobile
+ * PartyBar.js - Party member switching with HP bars
+ * All 3 characters visible, 44px+ tap targets
  */
 
 import React from 'react';
@@ -10,14 +10,21 @@ import { COLORS } from '../systems/GameEngine';
 
 const MIN_TAP_SIZE = 48;
 
-export function PartyBar({ activeCharacter, onSelectCharacter, partyMembers }) {
+const MAX_HP = { arlen: 100, leesha: 80, rojer: 70 };
+
+export function PartyBar({ activeCharacter, onSelectCharacter, partyMembers, characterHp }) {
   const members = partyMembers || ['arlen', 'leesha', 'rojer'];
+  const hp = characterHp || {};
 
   return (
     <View style={styles.container}>
       {members.map((charId) => {
         const char = CHARACTERS[charId.toUpperCase()] || CHARACTERS.ARLEN;
         const isActive = activeCharacter === charId;
+        const currentHp = hp[charId] ?? MAX_HP[charId] ?? 100;
+        const maxHp = MAX_HP[charId] ?? 100;
+        const hpPercent = maxHp > 0 ? (currentHp / maxHp) * 100 : 0;
+
         return (
           <TouchableOpacity
             key={charId}
@@ -32,6 +39,18 @@ export function PartyBar({ activeCharacter, onSelectCharacter, partyMembers }) {
             <Text style={[styles.name, isActive && styles.nameActive]} numberOfLines={1}>
               {char.name.split(' ')[0]}
             </Text>
+            {/* HP bar under portrait */}
+            <View style={styles.hpBarBg}>
+              <View
+                style={[
+                  styles.hpBarFill,
+                  {
+                    width: `${hpPercent}%`,
+                    backgroundColor: hpPercent > 50 ? COLORS.safe : hpPercent > 25 ? '#b8860b' : COLORS.danger,
+                  },
+                ]}
+              />
+            </View>
           </TouchableOpacity>
         );
       })}
@@ -43,21 +62,23 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: COLORS.surface,
-    paddingVertical: 12,
-    paddingHorizontal: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 4,
     borderTopWidth: 2,
     borderTopColor: COLORS.surfaceLight,
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    minHeight: 80,
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+    minHeight: 90,
   },
   characterButton: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    minWidth: MIN_TAP_SIZE,
+    minWidth: 0,
     minHeight: MIN_TAP_SIZE,
-    paddingVertical: 12,
-    paddingHorizontal: 16,
+    paddingVertical: 6,
+    paddingHorizontal: 4,
+    marginHorizontal: 4,
     borderRadius: 8,
   },
   characterButtonActive: {
@@ -66,18 +87,30 @@ const styles = StyleSheet.create({
     borderColor: COLORS.text,
   },
   emojiContainer: {
-    marginBottom: 4,
+    marginBottom: 2,
   },
   emoji: {
-    fontSize: 24,
+    fontSize: 22,
   },
   name: {
-    fontSize: 12,
+    fontSize: 11,
     color: COLORS.textMuted,
     fontWeight: '500',
+    marginBottom: 4,
   },
   nameActive: {
     color: COLORS.text,
     fontWeight: '700',
+  },
+  hpBarBg: {
+    width: '100%',
+    height: 5,
+    backgroundColor: COLORS.background,
+    borderRadius: 2,
+    overflow: 'hidden',
+  },
+  hpBarFill: {
+    height: '100%',
+    borderRadius: 2,
   },
 });

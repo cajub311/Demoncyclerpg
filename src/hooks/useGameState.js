@@ -97,25 +97,32 @@ export function useGameState() {
       return;
     }
 
+    // Spread-out positions so corelings don't overlap
+    const SPAWN_POSITIONS = [
+      [12, 18], [35, 15], [58, 25], [75, 18],
+      [18, 42], [42, 48], [65, 45], [28, 55],
+    ];
+
     const spawnCoreling = () => {
       setState((prev) => {
         if (prev.corelings.length >= 8) return prev; // Cap spawns
+        const usedPositions = prev.corelings.map((c) => `${c.x},${c.y}`);
+        const available = SPAWN_POSITIONS.filter(
+          ([px, py]) => !usedPositions.includes(`${px},${py}`)
+        );
+        if (available.length === 0) return prev;
+        const [x, y] = available[Math.floor(Math.random() * available.length)];
         const id = prev.corelingIdCounter + 1;
-        const type = 'field';
-        const hp = 30 + Math.floor(prev.gameDay * 2); // Scale with days
+        // Field = small/fast (early days), Rock = large/slow (day 3+)
+        const type = prev.gameDay >= 3 && Math.random() < 0.3 ? 'rock' : 'field';
+        const baseHp = type === 'rock' ? 80 : 30;
+        const hp = baseHp + Math.floor(prev.gameDay * 2);
         return {
           ...prev,
           corelingIdCounter: id,
           corelings: [
             ...prev.corelings,
-            {
-              id,
-              type,
-              hp,
-              maxHp: hp,
-              x: Math.random() * 80 + 10,
-              y: Math.random() * 40 + 20,
-            },
+            { id, type, hp, maxHp: hp, x, y },
           ],
         };
       });
@@ -135,11 +142,18 @@ export function useGameState() {
     setState((prev) => {
       const corelings = prev.corelings.map((c) =>
         c.id === corelingId
-          ? { ...c, hp: Math.max(0, c.hp - damage) }
+          ? { ...c, hp: Math.max(0, c.hp - damage), dying: (c.hp - damage) <= 0 }
           : c
-      ).filter((c) => c.hp > 0);
+      );
       return { ...prev, corelings };
     });
+  }, []);
+
+  const removeCoreling = useCallback((corelingId) => {
+    setState((prev) => ({
+      ...prev,
+      corelings: prev.corelings.filter((c) => c.id !== corelingId),
+    }));
   }, []);
 
   const setMoralPathSeen = useCallback(() => {
@@ -205,6 +219,7 @@ export function useGameState() {
     skyColorHex,
     setActiveCharacter,
     attackCoreling,
+    removeCoreling,
     setMoralPathSeen,
     setMoralScore,
     setCurrentTown,

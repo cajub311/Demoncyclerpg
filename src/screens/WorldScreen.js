@@ -2,7 +2,7 @@
  * WorldScreen.js - Main game world: sky, ground, phase, party, HUD, corelings
  */
 
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 import { useGame } from '../context/GameContext';
 import { PhaseIndicator } from '../components/PhaseIndicator';
@@ -10,6 +10,11 @@ import { PartyBar } from '../components/PartyBar';
 import { GameHUD } from '../components/GameHUD';
 import { Coreling } from '../components/Coreling';
 import { EchoButton } from '../components/EchoButton';
+import { SkyAtmosphere } from '../components/SkyAtmosphere';
+import { WardPlacementEffect } from '../components/WardPlacementEffect';
+import { DamageNumber } from '../components/DamageNumber';
+import { GroundLayer } from '../components/GroundLayer';
+import { NightAtmosphere } from '../components/NightAtmosphere';
 import { PHASES } from '../systems/GameEngine';
 
 export function WorldScreen() {
@@ -18,6 +23,7 @@ export function WorldScreen() {
     skyColorHex,
     setActiveCharacter,
     attackCoreling,
+    removeCoreling,
     useEcho,
   } = useGame();
 
@@ -26,10 +32,44 @@ export function WorldScreen() {
   const currentHp = characterHp?.[activeCharacter] ?? 100;
   const isDead = currentHp <= 0;
 
+  const [wardEffects, setWardEffects] = useState([]);
+  const [damageNumbers, setDamageNumbers] = useState([]);
+  const [lastHitId, setLastHitId] = useState(null);
+
+  useEffect(() => {
+    if (!lastHitId) return;
+    const t = setTimeout(() => setLastHitId(null), 200);
+    return () => clearTimeout(t);
+  }, [lastHitId]);
+
+  const handleAttackCoreling = useCallback((id, x, y) => {
+    const damage = 15;
+    attackCoreling(id, damage);
+    setLastHitId(id);
+    setWardEffects((prev) => [...prev, { key: `w-${id}-${Date.now()}`, x, y }]);
+    setDamageNumbers((prev) => [...prev, { key: `d-${id}-${Date.now()}`, damage, x, y }]);
+  }, [attackCoreling]);
+
+  const removeWardEffect = useCallback((key) => {
+    setWardEffects((prev) => prev.filter((e) => e.key !== key));
+  }, []);
+
+  const removeDamageNumber = useCallback((key) => {
+    setDamageNumbers((prev) => prev.filter((e) => e.key !== key));
+  }, []);
+
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: skyColorHex }]}>
-      {/* Sky gradient effect via background */}
-      <View style={[styles.ground, isNight && styles.groundNight]} />
+    <SafeAreaView style={styles.container}>
+      {/* Living sky: stars, sun, moon, clouds, fog */}
+      <SkyAtmosphere
+        skyColorHex={skyColorHex}
+        phase={phase}
+        minute={gameMinute}
+      />
+      <GroundLayer isNight={isNight} />
+
+      {/* Night atmosphere - vignette, red pulse, threatening ground */}
+      {isNight && <NightAtmosphere />}
 
       {/* Corelings (night only) - tap to attack */}
       {isNight &&
@@ -37,9 +77,30 @@ export function WorldScreen() {
           <Coreling
             key={c.id}
             coreling={c}
-            onTap={(id) => attackCoreling(id, 15)}
+            onTap={(id) => handleAttackCoreling(id, c.x, c.y)}
+            isHit={lastHitId === c.id}
+            onDeathComplete={removeCoreling}
           />
         ))}
+
+      {/* Ward placement + damage number when attacking */}
+      {wardEffects.map((e) => (
+        <WardPlacementEffect
+          key={e.key}
+          x={e.x}
+          y={e.y}
+          onComplete={() => removeWardEffect(e.key)}
+        />
+      ))}
+      {damageNumbers.map((e) => (
+        <DamageNumber
+          key={e.key}
+          damage={e.damage}
+          x={e.x}
+          y={e.y}
+          onComplete={() => removeDamageNumber(e.key)}
+        />
+      ))}
 
       {/* HUD */}
       <GameHUD
@@ -69,6 +130,7 @@ export function WorldScreen() {
         activeCharacter={activeCharacter}
         onSelectCharacter={setActiveCharacter}
         partyMembers={state.partyMembers}
+        characterHp={state.characterHp}
       />
     </SafeAreaView>
   );
@@ -77,19 +139,7 @@ export function WorldScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  ground: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: '35%',
-    backgroundColor: '#1a1510',
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-  },
-  groundNight: {
-    backgroundColor: '#0d0a08',
+    backgroundColor: '#0a0a12',
   },
   nightOverlay: {
     position: 'absolute',
