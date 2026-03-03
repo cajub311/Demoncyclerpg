@@ -1,0 +1,9 @@
+[
+  {
+    "id": "main_01_first_ward",
+    "name": "The First Ward",
+    "description": "Learn the Forbiddance Ward from Ragen.",
+    "objectives": ["talk_ragen", "learn_forbiddance"],
+    "rewards": { "xp": 50, "ward": "ward_forbiddance" }
+  }
+]

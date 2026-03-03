@@ -1,0 +1,5 @@
+[
+  { "id": "healing_salve", "name": "Healing Salve", "type": "consumable", "effect": "heal", "value": 20, "slots": [1,1] },
+  { "id": "food", "name": "Food", "type": "consumable", "effect": "stamina", "value": 10, "slots": [1,1] },
+  { "id": "water", "name": "Water", "type": "consumable", "effect": "thirst", "value": 15, "slots": [1,1] }
+]

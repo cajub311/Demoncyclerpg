@@ -16,6 +16,14 @@ Built with **React Native + Expo**.
 >
 > Scan the QR code with the **Expo Go** app on your Android device, or press `a` for Android emulator.
 >
+> ### Phase 1: Tile Exploration
+>
+> Tap **Explore** on the World screen to enter the tile-based overworld. Use the D-pad to move, **A** to interact with NPCs and zone transitions. Walk to the town entrance (center-top) to enter Tibbet's Brook, talk to NPCs, then exit via the north path.
+>
+> ### GitHub CodeSpaces
+>
+> Open this repo in CodeSpaces — the devcontainer auto-installs deps and forwards port 8081. Run `npm start`, then scan the QR code with Expo Go on your phone. The `--tunnel` flag creates a public URL so your device can reach the Metro bundler in the cloud.
+>
 > ---
 >
 > ## Tech Stack

@@ -1,0 +1,43 @@
+{
+  "id": "tibbet_brook_town",
+  "zone": "tibbets_brook",
+  "name": "Tibbet's Brook",
+  "width": 16,
+  "height": 14,
+  "tileSize": 32,
+  "tiles": [
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,2,2,2,0,0,0,0,0,0,0,0,2,2,2,1],
+    [1,2,2,2,0,0,0,0,0,0,0,0,2,2,2,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,3,3,0,0,3,3,0,0,0,0,1],
+    [1,0,0,0,0,3,3,0,0,3,3,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,3,3,0,0,0,0,0,0,3,3,0,0,1],
+    [1,0,0,3,3,0,0,0,0,0,0,3,3,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+  ],
+  "collision": [1, 2],
+  "buildings": [
+    { "id": "player_home", "x": 2, "y": 1, "w": 3, "h": 2, "name": "Your Home", "type": "save_point" },
+    { "id": "ragen_house", "x": 7, "y": 1, "w": 2, "h": 2, "name": "Ragen's House", "type": "mentor" },
+    { "id": "general_store", "x": 10, "y": 1, "w": 2, "h": 2, "name": "General Store", "type": "shop" },
+    { "id": "herb_hut", "x": 2, "y": 9, "w": 2, "h": 2, "name": "Herb Gatherer's Hut", "type": "craft" },
+    { "id": "town_square", "x": 5, "y": 3, "w": 6, "h": 4, "name": "Town Square", "type": "notice_board" },
+    { "id": "inn", "x": 10, "y": 9, "w": 2, "h": 2, "name": "Inn", "type": "rest" }
+  ],
+  "npcs": [
+    { "id": "bruna", "x": 3, "y": 10, "facing": "up", "name": "Bruna", "role": "Herb Gatherer", "dialogue": "We need every hand. The wards are failing." },
+    { "id": "ragen", "x": 8, "y": 2, "facing": "down", "name": "Ragen", "role": "Mentor", "dialogue": "Learn the wards, boy. They're all that stand between us and the core." },
+    { "id": "elder", "x": 7, "y": 5, "facing": "down", "name": "Elder", "role": "Village Elder", "dialogue": "The Messenger road to Cutter's Hollow is dangerous. Be prepared." },
+    { "id": "merchant", "x": 11, "y": 2, "facing": "down", "name": "Cob", "role": "Merchant", "dialogue": "Ward stones and food. Best prices in the Brook." }
+  ],
+  "spawn": { "x": 6, "y": 8 },
+  "exits": [
+    { "x": 8, "y": 1, "to": "tibbet_brook_overworld", "toX": 12, "toY": 16 }
+  ]
+}

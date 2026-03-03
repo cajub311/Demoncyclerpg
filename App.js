@@ -15,6 +15,7 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { GameProvider, useGame } from './src/context/GameContext';
 import { MoralPathScreen }      from './src/screens/MoralPathScreen';
 import { WorldScreen }          from './src/screens/WorldScreen';
+import { ExplorationScreen }    from './src/screens/ExplorationScreen';
 import { TownScreen }           from './src/screens/TownScreen';
 import { MessengerTravelScreen } from './src/screens/MessengerTravelScreen';
 import { CombatScreen }         from './src/screens/CombatScreen';
@@ -85,6 +86,7 @@ function AppContent() {
   const [screen, setScreen]     = useState('world');
     const [townView, setTownView] = useState(null);
     const [combatData, setCombatData] = useState(null);
+    const [showExploration, setShowExploration] = useState(false);
 
   // First launch: moral path selection
   if (!state.hasSeenMoralPath) {
@@ -134,6 +136,16 @@ function AppContent() {
   };
 
   // ─── SCREEN ROUTER ────────────────────────────────────────────────────────
+
+  // Phase 1: Tile-based exploration (walk Tibbet's Brook, talk to NPCs)
+  if (showExploration) {
+        return (
+                <ExplorationScreen
+            onEnterWorld={() => setShowExploration(false)}
+            onCombat={() => { setShowExploration(false); handleStartCombat(); }}
+          />
+        );
+  }
 
   if (screen === 'combat' && combatData) {
         return (
@@ -196,10 +208,17 @@ function AppContent() {
       <View style={styles.worldActions}>
         <TouchableOpacity
           style={styles.worldButton}
+          onPress={() => setShowExploration(true)}
+          activeOpacity={0.8}
+        >
+                      <Text style={styles.worldButtonText}>🗺 Explore</Text>
+            </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.worldButton}
           onPress={() => handleEnterTown(state.currentTown)}
           activeOpacity={0.8}
         >
-                      <Text style={styles.worldButtonText}>🏘 Enter Town</Text>
+                      <Text style={styles.worldButtonText}>🏘 Town</Text>
             </TouchableOpacity>
 
 {/* DEMO: launch a combat encounter */}

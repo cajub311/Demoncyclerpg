@@ -1,0 +1,47 @@
+{
+  "tibbets_brook": {
+    "id": "tibbets_brook",
+    "name": "Tibbet's Brook",
+    "zone": 1,
+    "biome": "forest",
+    "unlock": null,
+    "gate_requirement": null,
+    "description": "Struggling hamlet. Desperate for help."
+  },
+  "cutters_hollow": {
+    "id": "cutters_hollow",
+    "name": "Cutter's Hollow",
+    "zone": 2,
+    "biome": "forest",
+    "unlock": "ward_impact",
+    "gate_requirement": "Learn Impact Ward from Ragen",
+    "description": "Rebuilding after the coreling attack."
+  },
+  "angiers": {
+    "id": "angiers",
+    "name": "Angiers",
+    "zone": 3,
+    "biome": "river",
+    "unlock": "quest_main_02",
+    "gate_requirement": "Complete main story Act 2",
+    "description": "River city. Political and complex."
+  },
+  "miln": {
+    "id": "miln",
+    "name": "Miln",
+    "zone": 4,
+    "biome": "mountain",
+    "unlock": "quest_main_03",
+    "gate_requirement": "Complete main story Act 3",
+    "description": "Mountain fortress. Mining town."
+  },
+  "desert_spear": {
+    "id": "desert_spear",
+    "name": "Desert Spear",
+    "zone": 5,
+    "biome": "desert",
+    "unlock": "moral_krasian",
+    "gate_requirement": "Krasian alliance moral choice",
+    "description": "Desert warrior city. Respects strength only."
+  }
+}
